@@ -1,10 +1,7 @@
-/* Estilo Mapas */
-#map {
-  height: 100%;
-}
-/* Optional: Makes the sample page fill the window. */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+/*<div id="map" style="width: 640px; height: 480px">*/
+/* TAMAÑO MAPA*/
+.map {
+  width: 50vw;
+  height: 50vh;
+  position: relative;
 }

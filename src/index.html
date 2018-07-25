@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Geolocation</title>
+    <title>Food Map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, 
+      width=device-width" />
+      <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+      <script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+      <script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+      <script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+      <script type="text/javascript" charset="UTF-8" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
-    <div id="map"></div>
-  
+      <div id="mapContainer" class="map"></div>
+
     <script src="assets/main.js"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxU-ckt-d7a2OKSKAKiqoINEtfMD4zDU4&callback=initMap">
-    </script>
   </body>
 </html>

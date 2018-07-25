@@ -1,42 +1,70 @@
-// Inicializando Mapa
+//Inicicializando Mapa
+var platform = new H.service.Platform({
+  app_id: 'O9DoY7KRd4GikQwomU1T', // // <-- ENTER YOUR APP ID HERE
+  app_code: '_60riwD55GvOAy7LjosEhw', // <-- ENTER YOUR APP CODE HERE
+});
 
-// Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 15
-        });
-        infoWindow = new google.maps.InfoWindow;
+var defaultLayers = platform.createDefaultLayers();
+var mapPlaceholder = document.getElementById('map-container');
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+//var map = new H.Map(
+//  mapContainer,
+//  defaultLayers.normal.map);
+//Tamaños mapa en difrentes pantallas
+window.addEventListener('resize', function () {
+  map.getViewPort().resize();
+});
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
+//Punto central del mapa y el nivel de zoom inicial del mapa. 
+var coordinates = {
+  lat: -33.43727, // Aquí estamos en santgo Centro
+  lng: -70.65056
+};
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
+var mapOptions = {
+  center: coordinates,
+  zoom: 14
+}
+
+var map = new H.Map(
+  mapContainer,
+  defaultLayers.normal.map,
+  mapOptions);
+
+//Interacción mapa
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));  
+
+  // Agregar marcadores al mapa
+  var marker = new H.map.Marker(coordinates);
+map.addObject(marker);
+//Iconos personalizados para marcadores utilizando la clase H.map.Icon
+var iconUrl = './images/marker-gelato.svg';
+
+var iconOptions = {
+	// The icon's size in pixel:
+  size: new H.math.Size(26, 34),
+	// The anchorage point in pixel, 
+	// defaults to bottom-center
+  anchor: new H.math.Point(14, 34)
+};
+
+var markerOptions = {
+   icon: new H.map.Icon(iconUrl, iconOptions)
+};
+
+var marker = new H.map.Marker(coordinates, markerOptions);
+map.addObject(marker);
+
+//geolocalizacion watchPosition cada vez que cambie la posición del dispositivo.
+function updatePosition (event) {
+  var HEREHQcoordinates = {
+    lat: event.coords.latitude,
+    lng: event.coords.longitude
+  };
+
+  var marker = new H.map.Marker(HEREHQcoordinates);
+  map.addObject(marker);
+  map.setCenter(HEREHQcoordinates);
+}
+
+navigator.geolocation.watchPosition(updatePosition);
