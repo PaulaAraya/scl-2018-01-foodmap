@@ -1,9 +1,29 @@
-//Inicicializando Mapa
-var platform = new H.service.Platform({
+//Inicializando Mapa
+const platform = new H.service.Platform({
   app_id: 'O9DoY7KRd4GikQwomU1T', // // <-- ENTER YOUR APP ID HERE
   app_code: '_60riwD55GvOAy7LjosEhw', // <-- ENTER YOUR APP CODE HERE
 });
 
+// Obtain the default map types from the platform object:
+var defaultLayers = platform.createDefaultLayers();
+
+// Instantiate (and display) a map object:
+var map = new H.Map(
+  document.getElementById('mapContainer'),
+  defaultLayers.normal.map,
+  {
+    zoom: 10,
+    //busca posición actual del usuario
+    center: { lng: currentPosition.coords.longitude, 
+      lat: currentPosition.coords.latitude}
+  });
+
+  // Obtain the default map types from the platform object
+  //var maptypes = platform.createDefaultLayers();
+
+
+
+/*
 var defaultLayers = platform.createDefaultLayers();
 var mapPlaceholder = document.getElementById('map-container');
 
@@ -40,6 +60,7 @@ function updatePosition (event) {
     lat: event.coords.latitude,
     lng: event.coords.longitude
   };
+console.log(HEREHQcoordinates)
 
   var marker = new H.map.Marker(HEREHQcoordinates);
   map.addObject(marker);
@@ -47,3 +68,9 @@ function updatePosition (event) {
 }
 
 navigator.geolocation.watchPosition(updatePosition);
+
+//agregar marcador nuevo
+var marker = new H.map.Marker(coordinates);
+map.addObject(marker);
+
+//clear map y poner pines*/
