@@ -18,25 +18,7 @@ const printInfo = (discover) => {
     (discover.results.items[0].title)}`
 };
 
-// Define search parameters:
-var params = {
-  // Look for places matching the category "eat and drink":
-  'cat': 'eat-drink',
 
-  'in': `${currentPosition.coords.longitude}, ${currentPosition.coords.latitude} `
-};
-
-const btn = document.querySelector("button");
-//creo evento para la busqueda del input 
-btn.addEventListener('click', () => {
-  const input = searchFood.value;
-  input = ' ';
-  if (input === '') {
-    alert("Por favor, debe introducir texto");
-  } else {
-    params;
-  }
-});
 
 
 // Define a callback function to handle errors:
