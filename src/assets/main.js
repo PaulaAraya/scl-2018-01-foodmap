@@ -34,27 +34,6 @@ var map = new H.Map(
 //Interacción mapa
 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));  
 
-  // Agregar marcadores al mapa
-  var marker = new H.map.Marker(coordinates);
-map.addObject(marker);
-//Iconos personalizados para marcadores utilizando la clase H.map.Icon
-var iconUrl = './images/marker-gelato.svg';
-
-var iconOptions = {
-	// The icon's size in pixel:
-  size: new H.math.Size(26, 34),
-	// The anchorage point in pixel, 
-	// defaults to bottom-center
-  anchor: new H.math.Point(14, 34)
-};
-
-var markerOptions = {
-   icon: new H.map.Icon(iconUrl, iconOptions)
-};
-
-var marker = new H.map.Marker(coordinates, markerOptions);
-map.addObject(marker);
-
 //geolocalizacion watchPosition cada vez que cambie la posición del dispositivo.
 function updatePosition (event) {
   var HEREHQcoordinates = {
