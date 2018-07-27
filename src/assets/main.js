@@ -36,24 +36,25 @@ exampleFormControlSelect2.addEventListener('change', () => {
   var params = {
     // Look for places matching the category "eat and drink":
     'q': exampleFormControlSelect2.value,
-
-    'at': `${currentPosition.coords.longitude},${currentPosition.coords.latitude}`
+    'at': `${currentPosition.coords.latitude},${currentPosition.coords.longitude}`
   };
 
   // Define a callback function to handle data on success:
-  function onResult(exploreResult) {//remueve marcadores cuando cambias de geolocalización
+  function onResult(exploreResult) {
+    map.removeObjects(markers);//remueve marcadores cuando cambias de geolocalización
     markers = []; //almacena los marcadores 
     //recorrer items para la info de los restaurantes
     console.log(exploreResult);
     exploreResult.results.items.forEach(item => {
       var icon = new H.map.Icon('./assets/img/icon/iconLocation.png');
       let coords = {
-        lng: item.position[0],
-        lat: item.position[1]
+        lng: item.position[1],
+        lat: item.position[0]
       }
       var marker = new H.map.Marker(coords, { icon: icon });
       markers.push(marker);
       map.addObject(marker);
+      map.setCenter(coords);
     });
   }
 
