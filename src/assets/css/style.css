@@ -5,3 +5,18 @@
   height: 50vh;
   position: relative;
 }
+
+#principalPage{
+  width: 100vw;
+  height: 100vh;
+}
+
+#mapPage{
+  width: 100vw;
+  height: 100vh;
+}
+
+#principal{
+  margin-top: 60%;
+  display: none;
+}
