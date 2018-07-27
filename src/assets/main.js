@@ -18,7 +18,7 @@ navigator.geolocation.getCurrentPosition((position) => {
     document.getElementById('mapContainer'),
     defaultLayers.normal.map,
     {
-      zoom: 11,
+      zoom: 14,
       //busca posición actual del usuario
       center: {
         lng: currentPosition.coords.longitude,
@@ -46,15 +46,13 @@ exampleFormControlSelect2.addEventListener('change', () => {
     //recorrer items para la info de los restaurantes
     console.log(exploreResult);
     exploreResult.results.items.forEach(item => {
-      var icon = new H.map.Icon('./assets/img/icon/iconLocation.png');
       let coords = {
         lng: item.position[1],
         lat: item.position[0]
       }
-      var marker = new H.map.Marker(coords, { icon: icon });
+      var marker = new H.map.Marker(coords);
       markers.push(marker);
       map.addObject(marker);
-      map.setCenter(coords);
     });
   }
 
