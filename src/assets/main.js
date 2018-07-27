@@ -31,11 +31,11 @@ navigator.geolocation.getCurrentPosition((position) => {
 var search = new H.places.Search(platform.getPlacesService()), searchResult, error;
 let markers = [];
 
-exampleFormControlSelect2.addEventListener('change', () => {
+foodSelect.addEventListener('change', () => {
   // Define search parameters:
   var params = {
     // Look for places matching the category "eat and drink":
-    'q': exampleFormControlSelect2.value,
+    'q': foodSelect.value,
     'at': `${currentPosition.coords.latitude},${currentPosition.coords.longitude}`
   };
 
